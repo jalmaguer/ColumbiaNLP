@@ -1,3 +1,6 @@
+__author__="Jose Almaguer <jalmague@gmail.com>"
+__date__ ="$Sep 11, 2015"
+
 import sys
 from collections import defaultdict
 
