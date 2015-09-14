@@ -22,6 +22,20 @@ else
     python count_freqs.py rare.train > rare.counts
 fi
 
+if [ -f rare_classes.train ]; then
+    echo "rare_classes.train already exists"
+else
+    echo "generating rare_classes.train"
+    python replace_rare_classes.py gene.train > rare_classes.train
+fi
+
+if [ -f rare_classes.counts ]; then
+    echo "rare_classes.counts already exists"
+else
+    echo "generating rare_classes.counts"
+    python count_freqs.py rare_classes.train > rare_classes.counts
+fi
+
 if [ -f gene_dev.p1.out ]; then
     echo "gene_dev.p1.out already exists"
 else
@@ -36,6 +50,13 @@ else
     python trigram_tagger.py rare.counts gene.dev > gene_dev.p2.out
 fi
 
+if [ -f gene_dev.p3.out ]; then
+    echo "gene_dev.p3.out already exists"
+else
+    echo "running trigram tagger with classes"
+    python trigram_tagger_classes.py rare_classes.counts gene.dev > gene_dev.p3.out
+fi
+
 echo
 echo "Simple Tagger result:"
 python eval_gene_tagger.py gene.key gene_dev.p1.out
@@ -43,3 +64,7 @@ python eval_gene_tagger.py gene.key gene_dev.p1.out
 echo
 echo "Trigram Tagger result:"
 python eval_gene_tagger.py gene.key gene_dev.p2.out
+
+echo
+echo "Trigram Tagger Classes result"
+python eval_gene_tagger.py gene.key gene_dev.p3.out

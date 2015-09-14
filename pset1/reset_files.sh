@@ -16,6 +16,16 @@ if [ -f rare.counts ]; then
     rm rare.counts
 fi
 
+if [ -f rare_classes.train ]; then
+    echo "Removing rare_classes.train"
+    rm rare_classes.train
+fi
+
+if [ -f rare_classes.counts ]; then
+    echo "Removing rare_classes.counts"
+    rm rare_classes.counts
+fi
+
 if [ -f gene_dev.p1.out ]; then
     echo "Removing gene_dev.p1.out"
     rm gene_dev.p1.out
@@ -24,4 +34,9 @@ fi
 if [ -f gene_dev.p2.out ]; then
     echo "Removing gene_dev.p2.out"
     rm gene_dev.p2.out
+fi
+
+if [ -f gene_dev.p3.out ]; then
+    echo "Removing gene_dev.p3.out"
+    rm gene_dev.p3.out
 fi
