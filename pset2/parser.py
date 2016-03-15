@@ -103,7 +103,6 @@ class CKYParser:
         for i in range(1, len(sentence) + 1):
             word = sentence[i]
             word_count = sum(self.unary[key] for key in self.unary if key[1] == word)
-            print word, word_count
             if word_count < 5:
                 word = '_RARE_'
             for nonterm in self.nonterm:
@@ -121,6 +120,7 @@ class CKYParser:
                     rules = set(key for key in self.binary if key[0] == nonterm)
                     max_value = 0.0
                     arg_max = None
+                    X, Y, Z = None, None, None
                     for s in range(i, j):
                         for X, Y, Z in rules:
                             try:
