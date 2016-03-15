@@ -21,3 +21,14 @@ else
     echo "generating parse_train.counts.out"
     python count_cfg_freq.py rare.train > parse_train.counts.out
 fi
+
+if [ -f parse_dev.out ]; then
+    echo "parse_dev.out already exists"
+else
+    echo "generating parse_dev.out"
+    python parser.py parse_train.counts.out parse_dev.dat > parse_dev.out
+fi
+
+echo
+echo "Parser results:"
+python eval_parser.py parse_dev.key parse_dev.out

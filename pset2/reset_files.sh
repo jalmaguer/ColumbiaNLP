@@ -15,3 +15,8 @@ if [ -f parse_train.counts.out ]; then
     echo "Removing parse_train.counts.out"
     rm parse_train.counts.out
 fi
+
+if [ -f parse_dev.out ]; then
+    echo "Removing parse_dev.out"
+    rm parse_dev.out
+fi
